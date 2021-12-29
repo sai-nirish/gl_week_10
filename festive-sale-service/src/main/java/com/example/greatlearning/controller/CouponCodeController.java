@@ -15,6 +15,13 @@ public class CouponCodeController {
     CouponService couponService;
 
 
+    /**
+     * Gets discount value if coupon code exists
+     *
+     * @param code
+     * @return discount percentage
+     * @throws CouponNotFoundException
+     */
     @GetMapping("/getDiscount")
     public Integer getDiscountValue(String code) throws CouponNotFoundException{
            return couponService.getDiscountValue(code);

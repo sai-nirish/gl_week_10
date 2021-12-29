@@ -26,21 +26,32 @@ public class OfflineUserController {
        return offlineUserService.viewMenu();
     }
 
+    /**
+     * books the seat and returns the id of booking
+      * @return id of the booking
+     */
     @GetMapping(value="book-seat")
-    public Long bookSeat() throws OrderNotFoundException {
+    public Long bookSeat()  {
         return offlineUserService.bookSeat();
     }
 
+
+    /** Place orders with multiple items and quantities
+     * returns true once the order is placed */
     @PostMapping(value="order")
     public boolean Order(@RequestParam Long id, @RequestBody List<Order> orders) throws  OrderNotFoundException{
         return offlineUserService.order(id, orders);
     }
 
+    /** Get the bill and pay with a payment mode
+     * returns the amount of bill */
     @PostMapping(value="getBill")
     public Integer getBill(@RequestParam Long id, @RequestParam PaymentMode mode) throws OrderNotFoundException{
         return offlineUserService.getBill(id, mode);
     }
 
+    /** Give feedback
+     * returns true if feedback is submitted */
     @PostMapping(value="feedback")
     public boolean giveFeedback(@RequestParam Long id, @RequestParam String feedback, @RequestParam Integer rating) throws OrderNotFoundException{
         return offlineUserService.giveFeedback(id, feedback, rating);
